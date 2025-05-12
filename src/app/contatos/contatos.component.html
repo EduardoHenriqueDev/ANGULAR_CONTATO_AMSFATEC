@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="formGroupContatos">
+        <div class="mb-3">
+          <label for="inputName" class="form-label">
+            <strong>Nome:</strong>
+          </label>
+          <input
+            formControlName="contato"
+            type="text"
+            class="form-control"
+            id="inputContato"
+            aria-describedby="contatoHelp"
+            placeholder="Digite o nome do contato..."
+          />
+        </div>
+        <div class="mb-3">
+          <label for="inputNumero" class="form-label">
+            <strong>Número:</strong>
+          </label>
+          <input
+            formControlName="numero"
+            type="number"
+            class="form-control"
+            id="inputNumero"
+            aria-describedby="numeroHelp"
+            placeholder="Digite o número do contato..."
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="saveContato()">
+          Salvar
+        </button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h1>Contatos Cadastrados</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Número</th>
+            <th scope="col">Funções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of contatos">
+            <th scope="row">{{ c.id }}</th>
+            <td>{{ c.contato }}</td>
+            <td>{{ c.numero }}</td>
+            <td class="icon-group">
+              <button class="btn delete-btn" (click)="deleteContato(c)">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+              <button class="btn edit-btn">
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
