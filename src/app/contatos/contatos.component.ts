@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ContatosComponent implements OnInit {
   contatos: Contato[] = [];
   formGroupContatos: FormGroup;
-  idEditMode: boolean = false;
+  isEditMode: boolean = false;
   currentContatoId: number | null = null;
 
   constructor(
@@ -48,6 +48,31 @@ export class ContatosComponent implements OnInit {
   deleteContato(contato: Contato) {
     this.service.deleteContato(contato).subscribe({
       next: () => this.loadContatos(),
+    });
+  }
+
+  editContato(contato: Contato) {
+    this.isEditMode = true;
+    this.currentContatoId = contato.id;
+    this.formGroupContatos.setValue({
+      id: contato.id,
+      contato: contato.contato,
+      numero: contato.numero,
+    });
+  }
+
+  closeEditMode() {
+    this.isEditMode = false;
+    this.formGroupContatos.reset();
+  }
+
+  updateContato() {
+    const updateContato = this.formGroupContatos.value;
+    this.service.updateContato(updateContato).subscribe({
+      next: () => {
+        this.loadContatos();
+        this.closeEditMode();
+      },
     });
   }
 }

@@ -31,4 +31,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

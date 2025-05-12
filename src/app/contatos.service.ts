@@ -9,7 +9,7 @@ import { Contato } from './contato';
 export class ContatosService {
   apiUrl = ' http://localhost:3000/contact';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getContatos(): Observable<Contato[]> {
     return this.http.get<Contato[]>(this.apiUrl);
